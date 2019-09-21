@@ -8,17 +8,22 @@ RUN apt-get update
 RUN apt-get install -y \
         --no-install-recommends \
         curl \
+        unzip \
         ca-certificates
 
-RUN curl -sO "https://raw.githubusercontent.com/davidgatti/my-development-setup/master/02_Configurations/04_Zsh_instead_of_Bash/zshrc"
+RUN curl -sO "https://releases.hashicorp.com/packer/1.4.3/packer_1.4.3_linux_amd64.zip"
 
-FROM base as final
+RUN unzip packer_*.zip
+
+FROM debian:9.11-slim as final
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update &&\
         apt-get -y install \
             --no-install-recommends \
+            curl \
+            awscli \
             zsh \
             git && \
         rm -rf /var/lib/apt/lists/*
@@ -27,11 +32,16 @@ ARG user=david
 
 RUN useradd -s /usr/bin/zsh "$user"
 
-COPY --from=base ["zshrc", "/home/$user/.zshrc"]
+COPY --from=base ["packer", "/usr/local/bin/"]
+COPY [".zshrc", "/home/$user/.zshrc"]
 
 RUN chown -R "$user:$user" "/home/$user/"
 
 USER "$user"
+
+RUN curl -so /tmp/nvm-install.sh "https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh" && \
+        zsh /tmp/nvm-install.sh \
+        rm -rf /tmp/*
 
 RUN echo "zstyle :compinstall filename \'$HOME/.zshrc\'" >> "$HOME/.zshrc"
 
