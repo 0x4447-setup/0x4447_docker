@@ -36,13 +36,12 @@ RUN useradd -s /usr/bin/zsh "$user"
 COPY --from=base ["packer", "/usr/local/bin/"]
 COPY [".zshrc", "/home/$user/.zshrc"]
 
-RUN chown -R "$user:$user" "/home/$user/"
+RUN chown -R "$user:$user" "/home/$user/" && \
+        ln -s /usr/bin/python3 /usr/bin/python
 
 USER "$user"
 
-RUN curl -so /tmp/nvm-install.sh "https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh" && \
-        zsh /tmp/nvm-install.sh \
-        rm -rf /tmp/*
+RUN curl -so- /tmp/nvm-install.sh "https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh" | zsh
 
 RUN echo "zstyle :compinstall filename \'$HOME/.zshrc\'" >> "$HOME/.zshrc"
 
