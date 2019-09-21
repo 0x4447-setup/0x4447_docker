@@ -14,13 +14,13 @@ docker build --build-arg "user=$USER" -t 0x4447/development:latest .
 ## Mounting your working directory to a subdirectory in your container's home folder:
 
 ``` sh
-docker run -it -h my_docker_env --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447/development:latest
+docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447/development:latest
 ```
 
 ## Mounting other directories
 
 ``` sh
-docker run -it -h my_docker_env --mount src=/path/to/some/directory,target="/home/$USER/workdir/",type=bind 0x4447/development:latest
+docker run -it -h docker --mount src=/path/to/some/directory,target="/home/$USER/workdir/",type=bind 0x4447/development:latest
 ```
 
 ## Examples screenshot
