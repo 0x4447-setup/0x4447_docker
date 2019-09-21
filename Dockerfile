@@ -36,7 +36,8 @@ RUN useradd -s /usr/bin/zsh "$user"
 COPY --from=base ["packer", "/usr/local/bin/"]
 COPY [".zshrc", "/home/$user/.zshrc"]
 
-RUN chown -R "$user:$user" "/home/$user/"
+RUN chown -R "$user:$user" "/home/$user/" && \
+        ln -s /usr/bin/python3 /usr/bin/python
 
 USER "$user"
 
