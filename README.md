@@ -12,3 +12,7 @@ docker build --build-arg user=my_username -t 0x4447/development:latest .
 ``` sh
 docker run -it --mount src="$(pwd)",target=/home/my_username/workdir/,type=bind 0x4447/development:latest
 ```
+
+## Examples screenshot
+
+![Example](/images/Screen_Shot_2019-09-20_at_10.28.03_PM.png)
