@@ -19,6 +19,7 @@ FROM debian:9.11-slim as final
 
 ENV DEBIAN_FRONTEND noninteractive
 
+# hadolint ignore=DL3008
 RUN apt-get update &&\
         apt-get -y install \
             --no-install-recommends \
