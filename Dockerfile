@@ -40,9 +40,7 @@ RUN chown -R "$user:$user" "/home/$user/"
 
 USER "$user"
 
-RUN curl -so /tmp/nvm-install.sh "https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh" && \
-        zsh /tmp/nvm-install.sh \
-        rm -rf /tmp/*
+RUN curl -so- /tmp/nvm-install.sh "https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh" | zsh
 
 RUN echo "zstyle :compinstall filename \'$HOME/.zshrc\'" >> "$HOME/.zshrc"
 
