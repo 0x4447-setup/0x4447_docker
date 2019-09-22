@@ -8,12 +8,14 @@ autoload -Uz compinit
 compinit
 
 #
-#	Add the Bin folder where we keep our custom Bash Scripts
+#	In the user folder, we have the .bin folder where all the custom executables
+#	are located, like bash scripts etc. And we add the folder to the global
+#	path, so everything that goes there can be called anywhere in the system.
 #
 export PATH=$PATH:~/.bin
 
 #
-#	Enable basic mouse support
+#	Enable basic mouse support in nano, so we can scroll around.
 #
 alias nano='nano --mouse'
 
@@ -35,4 +37,7 @@ function parse_git_branch {
    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
-PROMPT=' > [%F{yellow}%n%f] [%F{yellow}%m%f] [%F{yellow}%1~%f] [%F{yellow}$(parse_git_branch)%f]: '
+#
+#	Prompt customization.
+#
+PROMPT='[%F{yellow}%D%f -%F{yellow}%t%f] [%F{yellow}%m%f] [%F{yellow}%n%f] [%F{yellow}%1~%f] [%F{yellow}$(parse_git_branch)%f]: '

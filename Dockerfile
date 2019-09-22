@@ -26,6 +26,7 @@ RUN apt-get update &&\
             curl \
             awscli \
             zsh \
+            nano \
             git && \
         rm -rf /var/lib/apt/lists/*
 
