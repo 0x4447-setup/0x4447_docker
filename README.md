@@ -22,19 +22,19 @@ docker build --build-arg "user=$USER" -t 0x4447:latest .
 
 # Image access
 
-### Running image in interactive mode
+Running image in interactive mode
 
 ```sh
 docker run -it -h docker 0x4447:latest
 ```
 
-### Running image in interactive mode + Mounting your active working directory to a subdirectory in your container's home folder
+Running image in interactive mode + Mounting your active working directory to a subdirectory in your container's home folder
 
 ``` sh
 docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
 ```
 
-### Running image in interactive mode + Mounting a fixed directory to a subdirectory in your container's home folder
+Running image in interactive mode + Mounting a fixed directory to a subdirectory in your container's home folder
 
 ``` sh
 docker run -it -h docker --mount src=/path/to/folder,target="/home/$USER/workdir/",type=bind 0x4447:latest
