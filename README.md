@@ -1,6 +1,6 @@
 # 🐳 Docker
 
-This is the default Docker setup for the whole company. Regardless of what operating system you are using, with this Docker file we can have a consistent plane field to work from.
+This is the default Docker setup for the whole company. Regardless of what operating system you are using, with this Docker file we have a consistent plane field to work from.
 
 # How to install Docker
 
