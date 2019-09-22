@@ -14,7 +14,7 @@ Follow this instructions to install Docker for your operating system.
     - Fedora: https://docs.docker.com/install/linux/docker-ce/fedora/
     - Ubuntu: https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
-# Building this container
+# Building the container
 
 ``` sh
 docker build --build-arg "user=$USER" -t 0x4447:latest .
@@ -22,27 +22,27 @@ docker build --build-arg "user=$USER" -t 0x4447:latest .
 
 # Image access
 
-Running image in interactive mode
+Running the image in interactive mode.
 
 ```sh
 docker run -it -h docker 0x4447:latest
 ```
 
-Running image in interactive mode + Mounting your active working directory to a subdirectory in your container's home folder
+Running the image in interactive mode + mounting your active working directory.
 
 ``` sh
 docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
 ```
 
-Running image in interactive mode + Mounting a fixed directory to a subdirectory in your container's home folder
+Running image in interactive mode + mounting a fixed directory.
 
 ``` sh
 docker run -it -h docker --mount src=/path/to/folder,target="/home/$USER/workdir/",type=bind 0x4447:latest
 ```
 
-# Adding Docker Run in shell
+# Run the image with a shortcut
 
-By adding the above command to your shell you'll be able to just type `docker_vm` to get in to your container and work, without having to remember this long command.
+By adding the above command to your shell you'll be able to just type `docker_vm` to get in to your container and work, without having to remember the long command.
 
 ## Linux
 
