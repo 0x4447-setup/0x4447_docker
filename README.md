@@ -2,9 +2,17 @@
 
 This is the default Docker setup for the whole company. Regardless of what operating system you are using, with this Docker file we can have a consistent plane field to work from.
 
-# Getting started with docker
+# How to install Docker
 
-Instruction how to install and configure Docker on different systems: https://docs.docker.com/get-started/.
+Follow this instructions to install Docker for your operating system.
+
+- MacOS: https://docs.docker.com/docker-for-mac/install/
+- Windows: https://docs.docker.com/docker-for-windows/install/
+- Linux:
+    - CentOS: https://docs.docker.com/install/linux/docker-ce/centos/
+    - Debian: https://docs.docker.com/install/linux/docker-ce/debian/
+    - Fedora: https://docs.docker.com/install/linux/docker-ce/fedora/
+    - Ubuntu: https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
 # Building this container
 
