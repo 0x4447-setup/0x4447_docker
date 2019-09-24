@@ -49,13 +49,17 @@ By adding the above command to your shell you'll be able to just type `docker_vm
 ### Bash
 
 ```sh
-
+docker_vm(){
+    docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
+}
 ```
 
 ### Zsh
 
 ```sh
-
+docker_vm(){
+    docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
+}
 ```
 
 ## MacOS
@@ -63,16 +67,28 @@ By adding the above command to your shell you'll be able to just type `docker_vm
 ### Bash
 
 ```sh
-
+docker_vm(){
+    docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
+}
 ```
 
 ### Zsh
 
 ```sh
-
+docker_vm(){
+    docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
+}
 ```
 
 ## Windows
+
+### Powershell
+
+``` powershell
+function docker_vm {
+    docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
+}
+```
 
 # The End
 
