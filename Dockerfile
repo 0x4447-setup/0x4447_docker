@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
 
 # Install required packages
-# hadolint ignore=DL3008
+# hadolint ignore=DL3008,DL3015
 RUN apt-get install -y \
         curl \
         unzip \
@@ -28,6 +28,7 @@ RUN curl -so nano.tar.xz "https://www.nano-editor.org/dist/v4/nano-4.4.tar.xz"
 RUN unzip packer_*.zip
 
 # Compile nano v4
+# hadolint ignore=DL3003
 RUN tar -xvf nano.tar.xz && \
         cd nano-* && \
         ./configure \
@@ -83,6 +84,7 @@ RUN chown -R "$user:$user" "/home/$user/" && \
 USER "$user"
 
 # Run nvm install
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl -so- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh" | zsh
 
 RUN echo "zstyle :compinstall filename \'$HOME/.zshrc\'" >> "$HOME/.zshrc"
