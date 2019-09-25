@@ -16,11 +16,21 @@ Follow this instructions to install Docker for your operating system.
 
 # Building the container
 
+## *NIX
+
 ``` sh
 docker build --build-arg "user=$USER" -t 0x4447:latest .
 ```
 
+## Winodows
+
+``` powershell
+docker build --build-arg "user=$env:USERNAME" -t 0x4447:latest .
+```
+
 # Image access
+
+## *NIX
 
 Running the image in interactive mode.
 
@@ -40,6 +50,12 @@ Running image in interactive mode + mounting a fixed directory.
 docker run -it -h docker --mount src=/path/to/folder,target="/home/$USER/workdir/",type=bind 0x4447:latest
 ```
 
+## Windows
+
+``` powershell
+docker run -it -h docker --mount src="$((Get-Location).Path -replace "\\", '/')",target="/home/$env:USERNAME/workdir/",type=bind 0x4447:latest
+```
+
 # Run the image with a shortcut
 
 By adding the above command to your shell you'll be able to just type `docker_vm` to get in to your container and work, without having to remember the long command.
@@ -49,13 +65,17 @@ By adding the above command to your shell you'll be able to just type `docker_vm
 ### Bash
 
 ```sh
-
+docker_vm(){
+    docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
+}
 ```
 
 ### Zsh
 
 ```sh
-
+docker_vm(){
+    docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
+}
 ```
 
 ## MacOS
@@ -63,16 +83,28 @@ By adding the above command to your shell you'll be able to just type `docker_vm
 ### Bash
 
 ```sh
-
+docker_vm(){
+    docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
+}
 ```
 
 ### Zsh
 
 ```sh
-
+docker_vm(){
+    docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
+}
 ```
 
 ## Windows
+
+### Powershell
+
+``` powershell
+function docker_vm {
+    docker run -it -h docker --mount src="$((Get-Location).Path -replace "\\", '/')",target="/home/$env:USERNAME/workdir/",type=bind 0x4447:latest
+}
+```
 
 # The End
 
