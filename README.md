@@ -16,7 +16,7 @@ Follow this instructions to install Docker for your operating system.
 
 # Building the container
 
-## *NIX
+## *nix
 
 ``` sh
 docker build --build-arg "user=$USER" -t 0x4447:latest .
@@ -30,7 +30,7 @@ docker build --build-arg "user=$env:USERNAME" -t 0x4447:latest .
 
 # Image access
 
-## *NIX
+## *nix
 
 Running the image in interactive mode.
 
@@ -56,13 +56,23 @@ docker run -it -h docker --mount src=/path/to/folder,target="/home/$USER/workdir
 docker run -it -h docker --mount src="$((Get-Location).Path -replace "\\", '/')",target="/home/$env:USERNAME/workdir/",type=bind 0x4447:latest
 ```
 
+# Setting the timezone in the container
+
+This can be done by setting the `$TZ` Environment variable:
+
+``` sh
+docker run -it -e TZ=Europe/Amsterdam 0x4447:latest
+```
+
 # Run the image with a shortcut
 
 By adding the above command to your shell you'll be able to just type `docker_vm` to get in to your container and work, without having to remember the long command.
 
-## Linux
+## *NIX
 
 ### Bash
+
+Add the following to your `.bash_profile` or `.bashrc` in your `$HOME` directory.
 
 ```sh
 docker_vm(){
@@ -72,23 +82,7 @@ docker_vm(){
 
 ### Zsh
 
-```sh
-docker_vm(){
-    docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
-}
-```
-
-## MacOS
-
-### Bash
-
-```sh
-docker_vm(){
-    docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
-}
-```
-
-### Zsh
+Add the following to your `.zshrc` in your `$HOME` directory:
 
 ```sh
 docker_vm(){
@@ -99,6 +93,8 @@ docker_vm(){
 ## Windows
 
 ### Powershell
+
+Add the following to your `$PROFILE`:
 
 ``` powershell
 function docker_vm {

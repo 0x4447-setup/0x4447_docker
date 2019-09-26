@@ -3,7 +3,7 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 bindkey -v
-zstyle :compinstall filename '/home/davidgatti/.zshrc'
+zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 compinit
 
@@ -12,7 +12,7 @@ compinit
 #	are located, like bash scripts etc. And we add the folder to the global
 #	path, so everything that goes there can be called anywhere in the system.
 #
-export PATH=$PATH:~/.bin
+export PATH="$PATH:~/.bin"
 
 #
 #	Enable basic mouse support in nano, so we can scroll around.
@@ -26,7 +26,7 @@ bindkey "^R" history-incremental-search-backward
 
 #
 #	If the PROMPT_SUBST option is set, the prompt string is first subjected to
-# 	parameter expansion, command substitution and arithmetic expansion.
+#	parameter expansion, command substitution and arithmetic expansion.
 #
 setopt PROMPT_SUBST
 

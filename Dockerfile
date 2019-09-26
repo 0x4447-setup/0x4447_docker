@@ -87,6 +87,18 @@ USER "$user"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl -so- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh" | zsh
 
+ENV NVM_DIR "/home/$user/.nvm"
+ENV NODE_VERSION v10.16.3
+
+# hadolint ignore=SC1090
+RUN source "$HOME/.nvm/nvm.sh" && \
+        nvm install 10 && \
+        nvm alias default "$NODE_VERSION" && \
+        nvm use default
+
+ENV NODE_PATH "$NVM_DIR/$NODE_VERSION/lib/node_modules"
+ENV PATH      "$NVM_DIR/$NODE_VERSION/bin:$PATH"
+
 RUN echo "zstyle :compinstall filename \'$HOME/.zshrc\'" >> "$HOME/.zshrc"
 
 # Change Working directory to home directory
