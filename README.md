@@ -22,7 +22,7 @@ Follow this instructions to install Docker for your operating system.
 docker build --build-arg "user=$USER" -t 0x4447:latest .
 ```
 
-## Winodows
+## Windows
 
 ``` powershell
 docker build --build-arg "user=$env:USERNAME" -t 0x4447:latest .
