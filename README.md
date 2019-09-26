@@ -66,7 +66,7 @@ docker run -it -e TZ=Europe/Amsterdam 0x4447:latest
 
 # Run the image with a shortcut
 
-By adding the above command to your shell you'll be able to just type `docker_vm` to get in to your container and work, without having to remember the long command.
+By adding the above command to your shell you'll be able to just type `vm_docker` to get in to your container and work, without having to remember the long command.
 
 ## *nix
 
@@ -75,8 +75,8 @@ By adding the above command to your shell you'll be able to just type `docker_vm
 Add the following to your `.bash_profile` or `.bashrc` in your `$HOME` directory.
 
 ```sh
-docker_vm(){
-    docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
+vm_docker(){
+    docker run -it -h docker --mount src=/Users/davidgatti/Documents/GitHub,target="/home/$USER/workdir/",type=bind 0x4447:latest
 }
 ```
 
@@ -85,7 +85,7 @@ docker_vm(){
 Add the following to your `.zshrc` in your `$HOME` directory:
 
 ```sh
-docker_vm(){
+vm_docker(){
     docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
 }
 ```
@@ -97,7 +97,7 @@ docker_vm(){
 Add the following to your `$PROFILE`:
 
 ``` powershell
-function docker_vm {
+function vm_docker {
     docker run -it -h docker --mount src="$((Get-Location).Path -replace "\\", '/')",target="/home/$env:USERNAME/workdir/",type=bind 0x4447:latest
 }
 ```
