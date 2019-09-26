@@ -68,7 +68,7 @@ docker run -it -e TZ=Europe/Amsterdam 0x4447:latest
 
 By adding the above command to your shell you'll be able to just type `docker_vm` to get in to your container and work, without having to remember the long command.
 
-## *NIX
+## *nix
 
 ### Bash
 
