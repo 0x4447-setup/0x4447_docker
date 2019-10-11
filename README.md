@@ -24,9 +24,13 @@ docker build --build-arg "user=$USER" -t 0x4447:latest .
 
 ## Windows
 
+Run the following command in Windows PowerShell:
+
 ``` powershell
 docker build --build-arg "user=$env:USERNAME" -t 0x4447:latest .
 ```
+
+  **Note:** `$env:USERNAME` is a powershell specific variable.
 
 # Image access
 
@@ -52,9 +56,14 @@ docker run -it -h docker --mount src=/path/to/folder,target="/home/$USER/workdir
 
 ## Windows
 
+Run the following command in Windows PowerShell:
+
 ``` powershell
 docker run -it -h docker --mount src="$((Get-Location).Path -replace "\\", '/')",target="/home/$env:USERNAME/workdir/",type=bind 0x4447:latest
 ```
+
+  **Note:** `$((Get-Location).Path -replace "\\", '/')` is a powershell specific command string.
+  **Note:** `$env:USERNAME` is a powershell specific variable.
 
 # Setting the timezone in the container
 
@@ -94,13 +103,17 @@ vm_docker(){
 
 ### Powershell
 
-Add the following to your `$PROFILE`:
+Add the following to your PowerShell `$PROFILE`:
 
 ``` powershell
 function vm_docker {
     docker run -it -h docker --mount src="$((Get-Location).Path -replace "\\", '/')",target="/home/$env:USERNAME/workdir/",type=bind 0x4447:latest
 }
 ```
+
+  **Note:** `function function_name {}` is a powershell specific command string.
+  **Note:** `$((Get-Location).Path -replace "\\", '/')` is a powershell specific command string.
+  **Note:** `$env:USERNAME` is a powershell specific variable.
 
 # The End
 
