@@ -88,13 +88,14 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl -so- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh" | zsh
 
 ENV NVM_DIR "/home/$user/.nvm"
-ENV NODE_VERSION v10.16.3
+ENV NODE_VERSION v10.17.0
 
 # hadolint ignore=SC1090
 RUN source "$HOME/.nvm/nvm.sh" && \
         nvm install 10 && \
         nvm alias default "$NODE_VERSION" && \
-        nvm use default
+        nvm use default && \
+        npm install -g @0x4447/grapes
 
 ENV NODE_PATH "$NVM_DIR/$NODE_VERSION/lib/node_modules"
 ENV PATH      "$NVM_DIR/$NODE_VERSION/bin:$PATH"
