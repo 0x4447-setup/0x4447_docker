@@ -19,7 +19,7 @@ Follow this instructions to install Docker for your operating system.
 ## *nix
 
 ``` sh
-docker build --build-arg "user=$USER" -t 0x4447:latest .
+docker build --no-cache --build-arg "user=$USER" -t 0x4447:latest .
 ```
 
 ## Windows
@@ -27,7 +27,7 @@ docker build --build-arg "user=$USER" -t 0x4447:latest .
 Run the following command in Windows PowerShell:
 
 ``` powershell
-docker build --build-arg "user=$env:USERNAME" -t 0x4447:latest .
+docker build --no-cache --build-arg "user=$env:USERNAME" -t 0x4447:latest .
 ```
 
   **Note:** `$env:USERNAME` is a powershell specific variable.
@@ -114,6 +114,14 @@ function vm_docker {
   **Note:** `function function_name {}` is a powershell specific command string.
   **Note:** `$((Get-Location).Path -replace "\\", '/')` is a powershell specific command string.
   **Note:** `$env:USERNAME` is a powershell specific variable.
+
+# Docker image cleanup
+
+You can remove exited docker containers with the following command
+
+``` sh
+docker rm $(docker ps -aq --filter status=exited)
+```
 
 # The End
 
