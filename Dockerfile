@@ -88,7 +88,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl -so- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh" | zsh
 
 ENV NVM_DIR "/home/$user/.nvm"
-ENV NODE_VERSION v10.17.0
+ENV NODE_VERSION v10.19.0
 
 # hadolint ignore=SC1090
 RUN source "$HOME/.nvm/nvm.sh" && \
