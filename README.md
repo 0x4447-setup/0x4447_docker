@@ -85,7 +85,7 @@ Add the following to your `.bash_profile` or `.bashrc` in your `$HOME` directory
 
 ```sh
 vm_docker(){
-    docker run -it -h docker --mount src=/Users/davidgatti/Documents/GitHub,target="/home/$USER/workdir/",type=bind 0x4447:latest
+    docker run -it -h docker --mount src=/Users/"$USER"/Documents/GitHub,target="/home/$USER/workdir/",type=bind 0x4447:latest
 }
 ```
 
