@@ -32,6 +32,15 @@ docker build --no-cache --build-arg "user=$env:USERNAME" -t 0x4447:latest .
 
   **Note:** `$env:USERNAME` is a powershell specific variable.
 
+# Choosing the packer version to install
+
+Just use `--build-arg PACKER_VERSION=1.5.0` to install version 1.5.0.
+
+``` sh
+docker build --no-cache --build-arg PACKER_VERSION=1.5.0 -t 0x4447:latest .
+```
+
+
 # Image access
 
 ## *nix
