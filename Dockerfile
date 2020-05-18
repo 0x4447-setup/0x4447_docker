@@ -3,6 +3,7 @@ FROM debian:9.11-slim as base
 
 # Ensure that apt does not try to prompt for user input
 ENV DEBIAN_FRONTEND noninteractive
+ARG PACKER_VERSION=1.5.6
 
 # Update package lists
 RUN apt-get update
@@ -21,7 +22,7 @@ RUN apt-get install -y \
 WORKDIR /tmp
 
 # Get Archives
-RUN curl -sO "https://releases.hashicorp.com/packer/1.4.3/packer_1.4.3_linux_amd64.zip"
+RUN curl -sO "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip"
 RUN curl -so nano.tar.xz "https://www.nano-editor.org/dist/v4/nano-4.4.tar.xz"
 
 # Unzip Archives
