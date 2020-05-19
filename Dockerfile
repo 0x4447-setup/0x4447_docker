@@ -1,5 +1,5 @@
 # multistage build so that the final container is smaller
-FROM debian:9.11-slim as base
+FROM debian:10.4-slim as base
 
 # Ensure that apt does not try to prompt for user input
 ENV DEBIAN_FRONTEND noninteractive
@@ -43,7 +43,7 @@ RUN tar -xvf nano.tar.xz && \
         install -v -m644 doc/nano.html doc/sample.nanorc /usr/share/doc/nano-4.4
 
 # Get a clean image for the final container
-FROM debian:9.11-slim as final
+FROM debian:10.4-slim as final
 
 # Ensure that apt does not try to prompt for user input
 ENV DEBIAN_FRONTEND noninteractive
@@ -51,13 +51,16 @@ ENV DEBIAN_FRONTEND noninteractive
 # Install required packages
 # hadolint ignore=DL3008
 RUN apt-get update && \
+        apt-get upgrade && \
         apt-get -y install \
-        --no-install-recommends \
+            --no-install-recommends \
+            --upgrade \
             curl \
             awscli \
             zsh \
             sudo \
             git \
+            ssh \
             python3-pip \
             python3-setuptools \
             ca-certificates && \
@@ -84,7 +87,12 @@ RUN chown -R "$user:$user" "/home/$user/" && \
         ln -s /usr/bin/python3 /usr/bin/python && \
         ln -s /usr/bin/pip3 /usr/bin/pip
 
-RUN /usr/bin/pip install ansible
+RUN /usr/bin/pip install --upgrade \
+        wheel \
+        pip
+
+RUN /usr/bin/pip install \
+        ansible
 
 # Switch to User
 USER "$user"
