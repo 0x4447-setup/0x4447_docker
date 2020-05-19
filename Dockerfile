@@ -58,6 +58,8 @@ RUN apt-get update && \
             zsh \
             sudo \
             git \
+            python3-pip \
+            python3-setuptools \
             ca-certificates && \
         rm -rf /var/lib/apt/lists/*
 
@@ -79,7 +81,10 @@ COPY [".zshrc", "/home/$user/.zshrc"]
 
 # Ensure that user owns their won home directory
 RUN chown -R "$user:$user" "/home/$user/" && \
-        ln -s /usr/bin/python3 /usr/bin/python
+        ln -s /usr/bin/python3 /usr/bin/python && \
+        ln -s /usr/bin/pip3 /usr/bin/pip
+
+RUN /usr/bin/pip install ansible
 
 # Switch to User
 USER "$user"
