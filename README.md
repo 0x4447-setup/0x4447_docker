@@ -19,7 +19,7 @@ Follow this instructions to install Docker for your operating system.
 ## *nix
 
 ``` sh
-docker build --no-cache --build-arg "user=$USER" -t 0x4447:latest .
+docker build --no-cache --build-arg "user=$USER" -t al2:latest .
 ```
 
 ## Windows
@@ -49,12 +49,14 @@ Running the image in interactive mode.
 
 ```sh
 docker run -it -h docker 0x4447:latest
+docker run -it -h docker al2:latest
 ```
 
 Running the image in interactive mode + mounting your active working directory.
 
 ``` sh
 docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
+docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind al2:latest
 ```
 
 Running image in interactive mode + mounting a fixed directory.
@@ -95,6 +97,7 @@ Add the following to your `.bash_profile` or `.bashrc` in your `$HOME` directory
 ```sh
 vm_docker(){
     docker run -it -h docker --mount src=/Users/"$USER"/Documents/GitHub,target="/home/$USER/workdir/",type=bind 0x4447:latest
+    docker run -it -h docker --mount src=/Users/"$USER"/Documents/GitHub,target="/home/$USER/workdir/",type=bind al2:latest
 }
 ```
 
