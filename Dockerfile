@@ -1,6 +1,8 @@
 # Bare amazon linux 2
 FROM amazonlinux:2 as base
 
+RUN yum clean
+
 # Update package lists
 RUN yum update -y
 
