@@ -2,48 +2,39 @@
 
 This is the default Docker setup for the whole company. Regardless of what operating system you are using, with this Docker file we have a consistent plane field to work from.
 
-# How to install Docker
+## How to install Docker
 
 Follow this instructions to install Docker for your operating system.
 
 - MacOS: https://docs.docker.com/docker-for-mac/install/
 - Windows: https://docs.docker.com/docker-for-windows/install/
 - Linux:
-    - CentOS: https://docs.docker.com/install/linux/docker-ce/centos/
-    - Debian: https://docs.docker.com/install/linux/docker-ce/debian/
-    - Fedora: https://docs.docker.com/install/linux/docker-ce/fedora/
-    - Ubuntu: https://docs.docker.com/install/linux/docker-ce/ubuntu/
+  - CentOS: https://docs.docker.com/install/linux/docker-ce/centos/
+  - Debian: https://docs.docker.com/install/linux/docker-ce/debian/
+  - Fedora: https://docs.docker.com/install/linux/docker-ce/fedora/
+  - Ubuntu: https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
-# Building the container
+## Building the container
 
-## *nix
+### *nix
 
-``` sh
+```sh
 docker build --no-cache --build-arg "user=$USER" -t al2:latest .
 ```
 
-## Windows
+### Windows
 
 Run the following command in Windows PowerShell:
 
-``` powershell
+```powershell
 docker build --no-cache --build-arg "user=$env:USERNAME" -t 0x4447:latest .
 ```
 
   **Note:** `$env:USERNAME` is a powershell specific variable.
 
-# Choosing the packer version to install
+## Image access
 
-Just use `--build-arg PACKER_VERSION=1.5.0` to install version 1.5.0.
-
-``` sh
-docker build --no-cache --build-arg PACKER_VERSION=1.5.0 -t 0x4447:latest .
-```
-
-
-# Image access
-
-## *nix
+### *nix
 
 Running the image in interactive mode.
 
@@ -54,18 +45,18 @@ docker run -it -h docker al2:latest
 
 Running the image in interactive mode + mounting your active working directory.
 
-``` sh
+```sh
 docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
 docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind al2:latest
 ```
 
 Running image in interactive mode + mounting a fixed directory.
 
-``` sh
+```sh
 docker run -it -h docker --mount src=/path/to/folder,target="/home/$USER/workdir/",type=bind 0x4447:latest
 ```
 
-## Windows
+### Windows
 
 Run the following command in Windows PowerShell:
 
@@ -76,7 +67,7 @@ docker run -it -h docker --mount src="$((Get-Location).Path -replace "\\", '/')"
   **Note:** `$((Get-Location).Path -replace "\\", '/')` is a powershell specific command string.
   **Note:** `$env:USERNAME` is a powershell specific variable.
 
-# Setting the timezone in the container
+## Setting the timezone in the container
 
 This can be done by setting the `$TZ` Environment variable:
 
@@ -84,13 +75,13 @@ This can be done by setting the `$TZ` Environment variable:
 docker run -it -e TZ=Europe/Amsterdam 0x4447:latest
 ```
 
-# Run the image with a shortcut
+## Run the image with a shortcut
 
 By adding the above command to your shell you'll be able to just type `vm_docker` to get in to your container and work, without having to remember the long command.
 
-## *nix
+### *nix
 
-### Bash
+#### Bash
 
 Add the following to your `.bash_profile` or `.bashrc` in your `$HOME` directory.
 
@@ -101,7 +92,7 @@ vm_docker(){
 }
 ```
 
-### Zsh
+#### Zsh
 
 Add the following to your `.zshrc` in your `$HOME` directory:
 
@@ -111,9 +102,9 @@ vm_docker(){
 }
 ```
 
-## Windows
+### Windows
 
-### Powershell
+#### Powershell
 
 Add the following to your PowerShell `$PROFILE`:
 
@@ -127,7 +118,7 @@ function vm_docker {
   **Note:** `$((Get-Location).Path -replace "\\", '/')` is a powershell specific command string.
   **Note:** `$env:USERNAME` is a powershell specific variable.
 
-# Docker container cleanup
+## Docker container cleanup
 
 You can remove exited docker containers with the following command
 
@@ -135,7 +126,7 @@ You can remove exited docker containers with the following command
 docker rm $(docker ps -aq --filter status=exited)
 ```
 
-# Docker image cleanup
+## Docker image cleanup
 
 You can remove all the images with the following command
 
@@ -143,7 +134,7 @@ You can remove all the images with the following command
   docker rmi $(docker images -q)
 ```
 
-# The End
+## The End
 
 If you enjoyed this project, please consider giving it a 🌟. And check out our [0x4447 GitHub account](https://github.com/0x4447), where you'll find additional resources you might find useful or interesting.
 
