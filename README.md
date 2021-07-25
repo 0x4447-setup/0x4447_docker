@@ -6,13 +6,13 @@ This is the default Docker setup for the whole company. Regardless of what opera
 
 Follow this instructions to install Docker for your operating system.
 
-- MacOS: https://docs.docker.com/docker-for-mac/install/
-- Windows: https://docs.docker.com/docker-for-windows/install/
+- [MacOS](https://docs.docker.com/docker-for-mac/install/)
+- [Windows](https://docs.docker.com/docker-for-windows/install/)
 - Linux:
-  - CentOS: https://docs.docker.com/install/linux/docker-ce/centos/
-  - Debian: https://docs.docker.com/install/linux/docker-ce/debian/
-  - Fedora: https://docs.docker.com/install/linux/docker-ce/fedora/
-  - Ubuntu: https://docs.docker.com/install/linux/docker-ce/ubuntu/
+  - [CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
+  - [Debian](https://docs.docker.com/install/linux/docker-ce/debian/)
+  - [Fedora](https://docs.docker.com/install/linux/docker-ce/fedora/)
+  - [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
 ## Building the container
 
@@ -81,9 +81,9 @@ docker run -it -e TZ=Europe/Amsterdam 0x4447:latest
 
 By adding the above command to your shell you'll be able to just type `vm_docker` to get in to your container and work, without having to remember the long command.
 
-### *nix
+***nix**
 
-#### Bash
+### Bash
 
 Add the following to your `.bash_profile` or `.bashrc` in your `$HOME` directory.
 
@@ -94,7 +94,7 @@ vm_docker(){
 }
 ```
 
-#### Zsh
+### Zsh
 
 Add the following to your `.zshrc` in your `$HOME` directory:
 
