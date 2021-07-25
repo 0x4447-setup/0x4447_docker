@@ -42,20 +42,21 @@ Running the image in interactive mode.
 
 ```sh
 docker run -it -h docker 0x4447:latest
-docker run -it -h docker al2:latest
+docker run -it -h docker 0x4447:al2
 ```
 
 Running the image in interactive mode + mounting your active working directory.
 
 ```sh
 docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
-docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind al2:latest
+docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:al2
 ```
 
 Running image in interactive mode + mounting a fixed directory.
 
 ```sh
 docker run -it -h docker --mount src=/path/to/folder,target="/home/$USER/workdir/",type=bind 0x4447:latest
+docker run -it -h docker --mount src=/path/to/folder,target="/home/$USER/workdir/",type=bind 0x4447:al2
 ```
 
 ### Windows
@@ -64,6 +65,7 @@ Run the following command in Windows PowerShell:
 
 ``` powershell
 docker run -it -h docker --mount src="$((Get-Location).Path -replace "\\", '/')",target="/home/$env:USERNAME/workdir/",type=bind 0x4447:latest
+docker run -it -h docker --mount src="$((Get-Location).Path -replace "\\", '/')",target="/home/$env:USERNAME/workdir/",type=bind 0x4447:al2
 ```
 
 - **Note:** `$((Get-Location).Path -replace "\\", '/')` is a powershell specific command string.
@@ -75,6 +77,7 @@ This can be done by setting the `$TZ` Environment variable:
 
 ``` sh
 docker run -it -e TZ=Europe/Amsterdam 0x4447:latest
+docker run -it -e TZ=Europe/Amsterdam 0x4447:al2
 ```
 
 ## Run the image with a shortcut
@@ -90,7 +93,7 @@ Add the following to your `.bash_profile` or `.bashrc` in your `$HOME` directory
 ```sh
 vm_docker(){
     docker run -it -h docker --mount src=/Users/"$USER"/Documents/GitHub,target="/home/$USER/workdir/",type=bind 0x4447:latest
-    docker run -it -h docker --mount src=/Users/"$USER"/Documents/GitHub,target="/home/$USER/workdir/",type=bind al2:latest
+    docker run -it -h docker --mount src=/Users/"$USER"/Documents/GitHub,target="/home/$USER/workdir/",type=bind 0x4447:al2
 }
 ```
 
@@ -101,6 +104,7 @@ Add the following to your `.zshrc` in your `$HOME` directory:
 ```sh
 vm_docker(){
     docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
+    docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:al2
 }
 ```
 
@@ -113,6 +117,7 @@ Add the following to your PowerShell `$PROFILE`:
 ``` powershell
 function vm_docker {
     docker run -it -h docker --mount src="$((Get-Location).Path -replace "\\", '/')",target="/home/$env:USERNAME/workdir/",type=bind 0x4447:latest
+    docker run -it -h docker --mount src="$((Get-Location).Path -replace "\\", '/')",target="/home/$env:USERNAME/workdir/",type=bind 0x4447:al2
 }
 ```
 
