@@ -125,12 +125,20 @@ function vm_docker {
   **Note:** `$((Get-Location).Path -replace "\\", '/')` is a powershell specific command string.
   **Note:** `$env:USERNAME` is a powershell specific variable.
 
-## Docker container cleanup
+## Docker cleanup
+
+### Remove stoped container
 
 You can remove exited docker containers with the following command
 
-``` sh
+```sh
 docker rm $(docker ps -aq --filter status=exited)
+```
+
+### Remove unused Images
+
+```sh
+docker image prune -f
 ```
 
 ## Docker image cleanup
