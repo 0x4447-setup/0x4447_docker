@@ -1,22 +1,24 @@
-# multistage build so that the final container is smaller
-FROM debian:9.11-slim as base
-
-# Ensure that apt does not try to prompt for user input
-ENV DEBIAN_FRONTEND noninteractive
-ARG PACKER_VERSION=1.5.6
+# Bare amazon linux 2
+FROM amazonlinux:2 as base
 
 # Update package lists
-RUN apt-get update
+RUN yum update -y
+
+# Default packer version
+ARG PACKER_VERSION=1.5.6
 
 # Install required packages
 # hadolint ignore=DL3008,DL3015
-RUN apt-get install -y \
+RUN yum install -y \
         curl \
         unzip \
-        xz-utils \
+        xz \
         gcc \
-        libncursesw5-dev \
-        build-essential
+        ncurses-devel \
+        build-essential \
+        tar \
+        groff \
+        make
 
 # Change working directory to /tmp
 WORKDIR /tmp
@@ -43,29 +45,26 @@ RUN tar -xvf nano.tar.xz && \
         install -v -m644 doc/nano.html doc/sample.nanorc /usr/share/doc/nano-4.4
 
 # Get a clean image for the final container
-FROM debian:9.11-slim as final
-
-# Ensure that apt does not try to prompt for user input
-ENV DEBIAN_FRONTEND noninteractive
+FROM amazonlinux:2 as final
 
 # Install required packages
 # hadolint ignore=DL3008
-RUN apt-get update && \
-        apt-get -y install \
-        --no-install-recommends \
+RUN yum update -y && \
+        yum install -y \
             curl \
             awscli \
-            zsh \
             sudo \
+            zsh \
             git \
-            ca-certificates && \
-        rm -rf /var/lib/apt/lists/*
+            ca-certificates \
+            tar \
+            python3
 
 # User Argument
 ARG user=admin
 
 # Create User
-RUN useradd -s /usr/bin/zsh "$user"
+RUN useradd -s /bin/bash "$user"
 
 # Ensrue User can sudo
 RUN echo "$user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
@@ -74,12 +73,8 @@ RUN echo "$user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 COPY --from=base ["/tmp/packer", "/usr/local/bin/"]
 COPY --from=base ["/usr/bin/nano", "/usr/bin/nano"]
 
-# Copy ./.zshrc into container
-COPY [".zshrc", "/home/$user/.zshrc"]
-
 # Ensure that user owns their won home directory
-RUN chown -R "$user:$user" "/home/$user/" && \
-        ln -s /usr/bin/python3 /usr/bin/python
+RUN chown -R "$user:$user" "/home/$user/"
 
 # Switch to User
 USER "$user"
@@ -101,10 +96,10 @@ RUN source "$HOME/.nvm/nvm.sh" && \
 ENV NODE_PATH "$NVM_DIR/$NODE_VERSION/lib/node_modules"
 ENV PATH      "$NVM_DIR/$NODE_VERSION/bin:$PATH"
 
-RUN echo "zstyle :compinstall filename \'$HOME/.zshrc\'" >> "$HOME/.zshrc"
+#RUN echo "zstyle :compinstall filename \'$HOME/.zshrc\'" >> "$HOME/.zshrc"
 
 # Change Working directory to home directory
 WORKDIR /home/$user
 
-# Set the entrypoint to zsh
-ENTRYPOINT ["/usr/bin/zsh"]
+# Set the entrypoint to bash
+ENTRYPOINT ["/bin/bash"]

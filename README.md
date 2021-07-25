@@ -30,9 +30,11 @@ Run the following command in Windows PowerShell:
 docker build --no-cache --build-arg "user=$env:USERNAME" -t 0x4447:latest .
 ```
 
-  **Note:** `$env:USERNAME` is a powershell specific variable.
+- **Note:** `$env:USERNAME` is a powershell specific variable.
 
 ## Image access
+
+How to run the container.
 
 ### *nix
 
@@ -64,8 +66,8 @@ Run the following command in Windows PowerShell:
 docker run -it -h docker --mount src="$((Get-Location).Path -replace "\\", '/')",target="/home/$env:USERNAME/workdir/",type=bind 0x4447:latest
 ```
 
-  **Note:** `$((Get-Location).Path -replace "\\", '/')` is a powershell specific command string.
-  **Note:** `$env:USERNAME` is a powershell specific variable.
+- **Note:** `$((Get-Location).Path -replace "\\", '/')` is a powershell specific command string.
+- **Note:** `$env:USERNAME` is a powershell specific variable.
 
 ## Setting the timezone in the container
 
