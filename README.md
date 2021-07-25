@@ -19,7 +19,8 @@ Follow this instructions to install Docker for your operating system.
 ### *nix
 
 ```sh
-docker build --no-cache --build-arg "user=$USER" -t al2:latest .
+docker build --no-cache --build-arg "user=$USER" -t 0x4447:latest .
+docker build --no-cache --build-arg "user=$USER" -t 0x4447:al2 .
 ```
 
 ### Windows
@@ -28,6 +29,7 @@ Run the following command in Windows PowerShell:
 
 ```powershell
 docker build --no-cache --build-arg "user=$env:USERNAME" -t 0x4447:latest .
+docker build --no-cache --build-arg "user=$env:USERNAME" -t 0x4447:al2 .
 ```
 
 - **Note:** `$env:USERNAME` is a powershell specific variable.
