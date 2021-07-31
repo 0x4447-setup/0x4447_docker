@@ -4,9 +4,6 @@ FROM amazonlinux:2 as base
 # Update package lists
 RUN yum update -y
 
-# Default packer version
-ARG PACKER_VERSION=1.5.6
-
 # Install required packages
 # hadolint ignore=DL3008,DL3015
 RUN yum install -y \
@@ -24,11 +21,7 @@ RUN yum install -y \
 WORKDIR /tmp
 
 # Get Archives
-RUN curl -sO "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip"
 RUN curl -so nano.tar.xz "https://www.nano-editor.org/dist/v4/nano-4.4.tar.xz"
-
-# Unzip Archives
-RUN unzip packer_*.zip
 
 # Compile nano v4
 # hadolint ignore=DL3003
@@ -70,7 +63,6 @@ RUN useradd -s /bin/bash "$user"
 RUN echo "$user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Copy compiled binaries from base
-COPY --from=base ["/tmp/packer", "/usr/local/bin/"]
 COPY --from=base ["/usr/bin/nano", "/usr/bin/nano"]
 
 # Ensure that user owns their won home directory
