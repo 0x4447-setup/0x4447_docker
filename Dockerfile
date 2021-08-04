@@ -15,27 +15,11 @@ RUN yum install -y \
         build-essential \
         tar \
         groff \
-        make
+        make \
+        nano
 
 # Change working directory to /tmp
 WORKDIR /tmp
-
-# Get Archives
-RUN curl -so nano.tar.xz "https://www.nano-editor.org/dist/v4/nano-4.4.tar.xz"
-
-# Compile nano v4
-# hadolint ignore=DL3003
-RUN tar -xvf nano.tar.xz && \
-        cd nano-* && \
-        ./configure \
-            --prefix=/usr     \
-            --sysconfdir=/etc \
-            --enable-utf8     \
-            --docdir=/usr/share/doc/nano-4.4 \
-            --disable-dependency-tracking && \
-        make && \
-        make install && \
-        install -v -m644 doc/nano.html doc/sample.nanorc /usr/share/doc/nano-4.4
 
 # Get a clean image for the final container
 FROM amazonlinux:2 as final
@@ -51,7 +35,8 @@ RUN yum update -y && \
             git \
             ca-certificates \
             tar \
-            python3
+            python3 \
+            nano
 
 # User Argument
 ARG user=admin
@@ -61,9 +46,6 @@ RUN useradd -s /bin/bash "$user"
 
 # Ensrue User can sudo
 RUN echo "$user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-
-# Copy compiled binaries from base
-COPY --from=base ["/usr/bin/nano", "/usr/bin/nano"]
 
 # Ensure that user owns their won home directory
 RUN chown -R "$user:$user" "/home/$user/"
