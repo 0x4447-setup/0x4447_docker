@@ -94,4 +94,4 @@ ENV PATH      "$NVM_DIR/$NODE_VERSION/bin:$PATH"
 WORKDIR /home/$user
 
 # Set the entrypoint to bash
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/zsh"]
