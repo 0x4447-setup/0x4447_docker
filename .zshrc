@@ -40,7 +40,7 @@ function parse_git_branch {
 #
 #	Prompt customization.
 #
-PROMPT='[%F{yellow}%D%f - %F{yellow}%t%f] [%F{yellow}%m%f] [%F{yellow}%n%f] [%F{yellow}%1~%f] [%F{yellow}$(parse_git_branch)%f]: '
+PROMPT=' > [%F{yellow}%n%f] [%F{yellow}%m%f] [%F{yellow}%1~%f] [%F{yellow}$(parse_git_branch)%f]: '
 
 #
 #   Provide the path for NodeJS location.
