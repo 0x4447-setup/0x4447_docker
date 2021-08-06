@@ -50,6 +50,11 @@ RUN echo "$user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 # Ensure that user owns their won home directory
 RUN chown -R "$user:$user" "/home/$user/"
 
+# Copy github_check.sh to container
+COPY github_check.sh /usr/bin/github_check.sh
+RUN chmod +x /usr/bin/github_check.sh
+RUN ln -s /usr/bin/github_check.sh /usr/bin/github_check
+
 # Switch to User
 USER "$user"
 
