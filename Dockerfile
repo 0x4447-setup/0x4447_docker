@@ -72,8 +72,6 @@ RUN source "$HOME/.nvm/nvm.sh" && \
 ENV NODE_PATH "$NVM_DIR/$NODE_VERSION/lib/node_modules"
 ENV PATH      "$NVM_DIR/$NODE_VERSION/bin:$PATH"
 
-#RUN echo "zstyle :compinstall filename \'$HOME/.zshrc\'" >> "$HOME/.zshrc"
-
 # Change Working directory to home directory
 WORKDIR /home/$user
 
