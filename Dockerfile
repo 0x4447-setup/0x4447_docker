@@ -35,7 +35,6 @@ RUN yum update -y && \
             git \
             ca-certificates \
             tar \
-            python3 \
             nano
 
 # User Argument
