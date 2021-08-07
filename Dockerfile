@@ -50,6 +50,9 @@ RUN echo "$user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 # Ensure that user owns their won home directory
 RUN chown -R "$user:$user" "/home/$user/"
 
+# Copy .zshrc to container
+COPY .zshrc "/home/$user/"
+
 # Switch to User
 USER "$user"
 
