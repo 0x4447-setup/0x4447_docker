@@ -42,7 +42,6 @@ Running the image in interactive mode.
 
 ```sh
 docker run -it -h docker 0x4447:latest
-docker run -it -h docker 0x4447:al2
 ```
 
 Running the image in interactive mode + mounting your active working directory.
@@ -74,7 +73,6 @@ This can be done by setting the `$TZ` Environment variable:
 
 ``` sh
 docker run -it -e TZ=Europe/Amsterdam 0x4447:latest
-docker run -it -e TZ=Europe/Amsterdam 0x4447:al2
 ```
 
 ## Run the image with a shortcut
