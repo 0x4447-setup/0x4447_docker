@@ -35,7 +35,6 @@ RUN yum update -y && \
             git \
             ca-certificates \
             tar \
-            python3 \
             nano
 
 # User Argument
@@ -58,6 +57,9 @@ COPY check_commit.sh /usr/bin/check_commit.sh
 RUN chmod +x /usr/bin/check_commit.sh
 RUN ln -s /usr/bin/check_commit.sh /usr/bin/check_commit
 
+# Copy .zshrc to container
+COPY .zshrc "/home/$user/"
+
 # Switch to User
 USER "$user"
 
@@ -66,7 +68,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl -so- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh" | zsh
 
 ENV NVM_DIR "/home/$user/.nvm"
-ENV NODE_VERSION v12
+
+# Set which verion of NodeJS should be installed.
+ENV NODE_VERSION v14
 
 # hadolint ignore=SC1090
 RUN source "$HOME/.nvm/nvm.sh" && \
@@ -77,8 +81,6 @@ RUN source "$HOME/.nvm/nvm.sh" && \
 
 ENV NODE_PATH "$NVM_DIR/$NODE_VERSION/lib/node_modules"
 ENV PATH      "$NVM_DIR/$NODE_VERSION/bin:$PATH"
-
-#RUN echo "zstyle :compinstall filename \'$HOME/.zshrc\'" >> "$HOME/.zshrc"
 
 # Change Working directory to home directory
 WORKDIR /home/$user
