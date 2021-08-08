@@ -49,6 +49,14 @@ RUN echo "$user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 # Ensure that user owns their won home directory
 RUN chown -R "$user:$user" "/home/$user/"
 
+# Copy github_check script to container
+COPY check_commit_add.sh /usr/bin/check_commit_add.sh
+RUN chmod +x /usr/bin/check_commit_add.sh
+RUN ln -s /usr/bin/check_commit_add.sh /usr/bin/check_commit_add
+COPY check_commit.sh /usr/bin/check_commit.sh
+RUN chmod +x /usr/bin/check_commit.sh
+RUN ln -s /usr/bin/check_commit.sh /usr/bin/check_commit
+
 # Copy .zshrc to container
 COPY .zshrc "/home/$user/"
 
