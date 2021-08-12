@@ -35,7 +35,8 @@ RUN yum update -y && \
             git \
             ca-certificates \
             tar \
-            nano
+            nano \
+            procps
 
 # User Argument
 ARG user=admin
