@@ -48,3 +48,5 @@ PROMPT=' > [%F{yellow}%n%f] [%F{yellow}%m%f] [%F{yellow}%1~%f] [%F{yellow}$(pars
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                        # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"      # This loads nvm bash_completion
+
+alias chromium-browser='chromium-browser --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-webgl'
