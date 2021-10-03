@@ -56,6 +56,12 @@ Running image in interactive mode + mounting a fixed directory.
 docker run -it -h docker --mount src=/path/to/folder,target="/home/$USER/workdir/",type=bind 0x4447:latest
 ```
 
+Running the image in interactive mode + RDP listening on port 15050/tcp (remote desktop available on rdp://localhost:15050/)
+
+```sh
+docker run -p 15050:3389 -it -h docker 0x4447:latest
+```
+
 ### Windows
 
 Run the following command in Windows PowerShell:
