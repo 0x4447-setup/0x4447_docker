@@ -62,6 +62,8 @@ Running the image in interactive mode + RDP listening on port 15050/tcp (remote 
 docker run -p 15050:3389 -it -h docker 0x4447:latest
 ```
 
+- **Note:** RDP access details will be available in `~/.rdp_credentials` file in form `<username>:<password>`
+
 ### Windows
 
 Run the following command in Windows PowerShell:
