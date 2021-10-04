@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Chrome
+Comment=
+Exec=/usr/bin/chromium-browser --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-webgl
+Icon=applications-internet
+Path=
+Terminal=false
+StartupNotify=false
