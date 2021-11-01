@@ -73,9 +73,9 @@ ENV DBUS_SESSION_BUS_ADDRESS="unix:path=/run/dbus/system_bus_socket"
 RUN echo "xfce4-session" > /etc/skel/.Xclients
 
 # Permit to start X-server without console authentication
-COPY xrdp.conf /etc/supervisord.d/xrdp.ini
-COPY xrdp-sesman.conf /etc/supervisord.d/xrdp-sesman.ini
-COPY supervisord.conf /etc/
+COPY conf/xrdp.conf /etc/supervisord.d/xrdp.ini
+COPY conf/xrdp-sesman.conf /etc/supervisord.d/xrdp-sesman.ini
+COPY conf/supervisord.conf /etc/
 
 # Install chromium browser
 RUN yum install -y chromium
@@ -99,15 +99,15 @@ RUN echo "$user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 RUN chown -R "$user:wheel" "/home/$user/"
 
 # Copy github_check script to container
-COPY check_commit_add.sh /usr/bin/check_commit_add.sh
+COPY bin/check_commit_add.sh /usr/bin/check_commit_add.sh
 RUN chmod +x /usr/bin/check_commit_add.sh
 RUN ln -s /usr/bin/check_commit_add.sh /usr/bin/check_commit_add
-COPY check_commit.sh /usr/bin/check_commit.sh
+COPY bin/check_commit.sh /usr/bin/check_commit.sh
 RUN chmod +x /usr/bin/check_commit.sh
 RUN ln -s /usr/bin/check_commit.sh /usr/bin/check_commit
 
 # Copy X-server wrapper script to container
-COPY wrapper_script.sh /usr/bin/wrapper_script.sh
+COPY system/wrapper_script.sh /usr/bin/wrapper_script.sh
 RUN chmod +x /usr/bin/wrapper_script.sh
 
 # Copy .zshrc to container
