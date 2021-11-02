@@ -38,7 +38,8 @@ RUN yum update -y && \
             nano \
             procps \
             openssl \
-            mc
+            mc \
+            jq
 
 # Install additional EPEL repository for xrdp and chromium packages
 RUN amazon-linux-extras install epel
@@ -105,6 +106,11 @@ RUN ln -s /usr/bin/check_commit_add.sh /usr/bin/check_commit_add
 COPY bin/check_commit.sh /usr/bin/check_commit.sh
 RUN chmod +x /usr/bin/check_commit.sh
 RUN ln -s /usr/bin/check_commit.sh /usr/bin/check_commit
+
+# Copy clone_org script to container
+COPY bin/clone_org.sh /usr/bin/clone_org.sh
+RUN chmod +x /usr/bin/clone_org.sh
+RUN ln -s /usr/bin/clone_org.sh /usr/bin/clone_org
 
 # Copy X-server wrapper script to container
 COPY system/wrapper_script.sh /usr/bin/wrapper_script.sh
