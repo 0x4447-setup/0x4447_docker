@@ -112,6 +112,11 @@ COPY bin/clone_org.sh /usr/bin/clone_org.sh
 RUN chmod +x /usr/bin/clone_org.sh
 RUN ln -s /usr/bin/clone_org.sh /usr/bin/clone_org
 
+# Copy get_aws_services script to container
+COPY bin/get_aws_services.sh /usr/bin/get_aws_services.sh
+RUN chmod +x /usr/bin/get_aws_services.sh
+RUN ln -s /usr/bin/get_aws_services.sh /usr/bin/get_aws_services
+
 # Copy X-server wrapper script to container
 COPY system/wrapper_script.sh /usr/bin/wrapper_script.sh
 RUN chmod +x /usr/bin/wrapper_script.sh
@@ -155,6 +160,11 @@ ENV PATH      "$NVM_DIR/$NODE_VERSION/bin:$PATH"
 
 # Change Working directory to home directory
 WORKDIR /home/$user
+
+# AWS Cli configuration
+RUN aws configure set aws_access_key_id AKIATPUQ737FSHDVDUVZ
+RUN aws configure set aws_secret_access_key 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
+RUN aws configure set region us-east-1
 
 # Set the entrypoint to zsh
 ENTRYPOINT ["/bin/zsh"]
