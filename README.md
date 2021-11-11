@@ -104,8 +104,12 @@ vm_docker(){
 Add the following to your `.zshrc` in your `$HOME` directory:
 
 ```sh
-vm_docker(){
-    docker run -it -h docker --mount src="$(pwd)",target="/home/$USER/workdir/",type=bind 0x4447:latest
+vm_docker_x() {
+    docker run -p 15050:3389 -it -h docker --mount src=/Users/davidgatti/Documents/GitHub,target="/home/$USER/workdir/",type=bind 0x4447:latest
+}
+
+vm_docker() {
+    docker run -it -h docker --mount src=/Users/davidgatti/Documents/GitHub,target="/home/$USER/workdir/",type=bind 0x4447:latest
 }
 ```
 
