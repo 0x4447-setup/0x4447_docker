@@ -161,11 +161,6 @@ ENV PATH      "$NVM_DIR/$NODE_VERSION/bin:$PATH"
 # Change Working directory to home directory
 WORKDIR /home/$user
 
-# AWS Cli configuration
-RUN aws configure set aws_access_key_id AKIATPUQ737FSHDVDUVZ
-RUN aws configure set aws_secret_access_key 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
-RUN aws configure set region us-east-1
-
 # Set the entrypoint to zsh
 ENTRYPOINT ["/bin/zsh"]
 

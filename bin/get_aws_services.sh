@@ -1,6 +1,15 @@
 #!/bin/bash
 
 #
+#   Check awscli is configured
+#
+AWSCONFIG=$(aws configure get aws_access_key_id)
+if [[ $AWSCONFIG == "" ]]; then
+    echo "You need to run \"aws configure\" first"
+    exit 1
+fi
+
+#
 #   Get full AWS services list to array
 #
 mapfile AWSSERVICES < <(aws ssm get-parameters-by-path --path /aws/service/global-infrastructure/services --output json | jq '.Parameters[].Name' | sed s/\"//g | sort)
