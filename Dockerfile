@@ -112,6 +112,11 @@ COPY bin/clone_org.sh /usr/bin/clone_org.sh
 RUN chmod +x /usr/bin/clone_org.sh
 RUN ln -s /usr/bin/clone_org.sh /usr/bin/clone_org
 
+# Copy get_aws_services script to container
+COPY bin/get_aws_services.sh /usr/bin/get_aws_services.sh
+RUN chmod +x /usr/bin/get_aws_services.sh
+RUN ln -s /usr/bin/get_aws_services.sh /usr/bin/get_aws_services
+
 # Copy X-server wrapper script to container
 COPY system/wrapper_script.sh /usr/bin/wrapper_script.sh
 RUN chmod +x /usr/bin/wrapper_script.sh
