@@ -117,6 +117,11 @@ COPY bin/get_aws_services.sh /usr/bin/get_aws_services.sh
 RUN chmod +x /usr/bin/get_aws_services.sh
 RUN ln -s /usr/bin/get_aws_services.sh /usr/bin/get_aws_services
 
+# Copy rsysnoise script to container
+COPY bin/rsysnoise.sh /usr/bin/rsysnoise.sh
+RUN chmod +x /usr/bin/rsysnoise.sh
+RUN ln -s /usr/bin/rsysnoise.sh /usr/bin/rsysnoise
+
 # Copy X-server wrapper script to container
 COPY system/wrapper_script.sh /usr/bin/wrapper_script.sh
 RUN chmod +x /usr/bin/wrapper_script.sh
