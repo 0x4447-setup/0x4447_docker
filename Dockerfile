@@ -151,7 +151,7 @@ RUN curl -so- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh" 
 ENV NVM_DIR "/home/$user/.nvm"
 
 # Set which verion of NodeJS should be installed.
-ENV NODE_VERSION v14
+ENV NODE_VERSION v16
 
 # hadolint ignore=SC1090
 RUN source "$HOME/.nvm/nvm.sh" && \
